@@ -1,0 +1,66 @@
+<div class="container mx-auto px-4 py-6">
+  <div class="text-2xl font-bold mb-4">Your Cart</div>
+
+  @if(cartItems.length === 0) {
+  <div>Your Cart is Empty</div>
+  <div class="flex justify-center">
+    <button routerLink="/order" class="border-2 border-black p-1 rounded-lg">
+      Add Something to the Cart
+    </button>
+  </div>
+  } @else {
+  <div>
+    @for(item of cartItems; track item.id) {
+    <div
+      class="flex items-center justify-between border-b border-gray-300 py-4"
+    >
+      <div class="flex items-center space-x-4">
+        <img
+          [src]="item.imageSource"
+          alt="{{ item.foodItemName }}"
+          class="w-20 h-20 object-cover rounded"
+        />
+        <div>
+          <h2 class="text-lg font-semibold">{{ item.foodItemName }}</h2>
+          <p class="text-gray-600">Quantity: {{ item.quantity }}</p>
+          <p class="text-gray-600">Price: ₹{{ item.price }}</p>
+          <p class="text-gray-600">Total: ₹{{ item.price * item.quantity }}</p>
+        </div>
+      </div>
+      <div class="flex space-x-2">
+        <button
+          (click)="decreaseQuantity(item.id)"
+          class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
+        >
+          -
+        </button>
+        <button
+          (click)="increaseQuantity(item.id)"
+          class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
+        >
+          +
+        </button>
+        <button
+          (click)="removeItem(item.id)"
+          class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+    }
+
+    <div class="flex justify-end mt-6">
+      <p class="text-xl font-bold">Total Cost: ₹{{ totalCost }}</p>
+    </div>
+
+    <div class="mt-6">
+      <button
+        class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+  }
+</div>

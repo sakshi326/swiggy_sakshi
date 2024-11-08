@@ -1,0 +1,20 @@
+<div (click)="navigateToOrder()" class="w-[250px]">
+  <div>
+    <img class="rounded-md" [src]="imageSrc" />
+  </div>
+  <div class="flex justify-center truncate">
+    {{ name }}
+  </div>
+  <div class="md:flex md:justify-between">
+    <div class="text-sm truncate">{{ cuisines[0] }} • {{ cuisines[1] }}</div>
+    <div class="text-sm font-bold truncate">
+      {{ price }}
+    </div>
+  </div>
+  <div class="md:flex md:justify-between">
+    <div class="text-sm truncate">{{ location }}</div>
+    <div class="text-sm font-bold">
+      {{ rating }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="p-2">
+  <div class="text-2xl font-bold">
+    Order some food to satisfy your mid-night craving
+  </div>
+
+  @for(restaurant of restaurantDishes; track restaurant.id){
+  <div class="rounded-md mt-4">
+    <div class="p-4 bg-slate-200">
+      <h2 class="text-2xl font-semibold text-gray-800">
+        {{ restaurant.name }}
+      </h2>
+      <p class="text-gray-600 text-sm mt-2">{{ restaurant.description }}</p>
+      <p class="text-gray-700 mt-2 font-medium">{{ restaurant.location }}</p>
+    </div>
+
+    <div class="mt-4">
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 overflow-auto mx-4"
+      >
+        @for(foodItem of restaurant.dishes; track foodItem.id){
+        <app-menu-item
+          [imageSrc]="foodItem.imageSource"
+          [itemName]="foodItem.foodItemName"
+          [orderPage]="true"
+          [id]="foodItem.id"
+          [price]="foodItem.price"
+          [restaurantID]="restaurant.id"
+        />
+        }
+      </div>
+    </div>
+  </div>
+
+  }
+</div>

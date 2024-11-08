@@ -1,0 +1,51 @@
+<div class="container mx-auto px-4 py-6">
+  <div class="text-2xl font-bold mb-4">Your Favorites</div>
+
+  @if(favoriteItems.length === 0){
+  <div>
+    <p>Your Favorites list is empty</p>
+    <div class="flex justify-center">
+      <button routerLink="/order" class="border-2 border-black p-1 rounded-lg">
+        Add Something to Your Favorites
+      </button>
+    </div>
+  </div>
+  }@else {
+  <div>
+    @for(item of favoriteItems; track item.id){
+    <div>
+      <div
+        class="flex items-center justify-between border-b border-gray-300 py-4"
+      >
+        <div class="flex items-center space-x-4">
+          <img
+            [src]="item.imageSource"
+            alt="{{ item.foodItemName }}"
+            class="w-20 h-20 object-cover rounded"
+          />
+          <div>
+            <h2 class="text-lg font-semibold">{{ item.foodItemName }}</h2>
+            <p class="text-gray-600">Price: ₹{{ item.price }}</p>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <button
+            (click)="removeFromFavorites(item.id)"
+            class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+          >
+            Remove
+          </button>
+          <button
+            (click)="addToCart(item)"
+            class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  }
+</div>

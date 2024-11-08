@@ -1,0 +1,120 @@
+<div class="min-h-screen bg-gray-100 flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">
+      {{ isLogin ? "Login" : "Register" }}
+    </h2>
+
+    <form *ngIf="isLogin" (submit)="onLoginSubmit()" #loginForm="ngForm">
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700"
+          >Email Address</label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          class="w-full px-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block text-sm font-medium text-gray-700"
+          >Password</label
+        >
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          class="w-full px-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <!-- Error Message (if any) -->
+      <div *ngIf="error" class="text-sm text-red-500 mb-4">{{ error }}</div>
+
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg focus:outline-none hover:bg-blue-600"
+      >
+        Login
+      </button>
+    </form>
+
+    <!-- Register Form -->
+    <form *ngIf="!isLogin" (submit)="onRegisterSubmit()" #registerForm="ngForm">
+      <div class="mb-4">
+        <label for="regEmail" class="block text-sm font-medium text-gray-700"
+          >Email Address</label
+        >
+        <input
+          type="email"
+          id="regEmail"
+          name="email"
+          [(ngModel)]="email"
+          required
+          class="w-full px-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-gray-700"
+          >Username</label
+        >
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          required
+          class="w-full px-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Choose a username"
+        />
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="block text-sm font-medium text-gray-700"
+          >Password</label
+        >
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          class="w-full px-4 py-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Choose a password"
+        />
+      </div>
+
+      <!-- Error Message (if any) -->
+      <div *ngIf="error" class="text-sm text-red-500 mb-4">{{ error }}</div>
+
+      <button
+        type="submit"
+        class="w-full bg-green-500 text-white px-4 py-2 rounded-lg focus:outline-none hover:bg-green-600"
+      >
+        Register
+      </button>
+    </form>
+
+    <!-- Toggle Link -->
+    <div class="mt-4 text-center">
+      <p class="text-sm text-gray-700">
+        <a (click)="toggleForm()" class="text-blue-500 hover:underline">
+          {{
+            isLogin
+              ? "Don't have an account? Sign up"
+              : "Already have an account? Login"
+          }}
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div (click)="navigateToOrder()" class="w-[120px] md:w-[250px]">
+  <div class="flex justify-center">
+    <img
+      class="w-[220px] aspect-square rounded-md"
+      [src]="imageSrc"
+      (error)="setDefaultImage($event)"
+      loading="lazy"
+    />
+  </div>
+  <div
+    class="flex justify-between md:text-xl font-bold"
+    [ngClass]="{ 'px-2': orderPage }"
+  >
+    <div [ngClass]="{ 'w-3/4 truncate': orderPage }">
+      {{ itemName }}
+    </div>
+    @if(orderPage){
+    <div [ngClass]="{ 'w-1/4': orderPage }">₹ {{ price }}</div>
+    }
+  </div>
+  @if(orderPage){
+  <div class="flex justify-center gap-4">
+    <button
+      (click)="addToCart($event)"
+      class="border-2 p-1 rounded-md border-black w-3/4 hover:bg-slate-200"
+    >
+      Add to Cart
+    </button>
+    <input
+      class="w-1/4 border-2 p-1 flex justify-center rounded-md border-black"
+      [defaultValue]="1"
+      [(ngModel)]="itemQuantity"
+      type="number"
+      min="1"
+    />
+  </div>
+  } @if(orderPage){
+  <div class="w-full mt-2">
+    <button
+      (click)="toggleFavorite($event)"
+      class="p-2 rounded border border-orange-500 text-black transition duration-300 w-full 
+         {{
+        isFavorite
+          ? 'bg-orange-500 hover:bg-orange-400'
+          : 'bg-transparent hover:bg-orange-400'
+      }}"
+    >
+      {{ isFavorite ? "Remove from Favorites" : "Add to Favorites" }}
+    </button>
+  </div>
+  }
+</div>
